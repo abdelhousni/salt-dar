@@ -1,0 +1,8 @@
+---
+# handlers file for dar.salt.salt-master
+- name: Redémarrer salt-master
+  ansible.builtin.systemd:
+    name: salt-master
+    state: restarted
+    daemon_reload: true
+  become: true

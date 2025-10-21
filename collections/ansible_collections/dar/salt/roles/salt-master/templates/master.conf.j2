@@ -1,0 +1,20 @@
+# Configuration personnalisée du Salt Master
+# Généré par Ansible
+
+# Interface réseau à utiliser
+interface: {{ salt_master_interface | default('0.0.0.0') }}
+
+# Port pour les retours des minions
+ret_port: {{ salt_master_ret_port | default(4506) }}
+
+# Port de publication pour les commandes
+publish_port: {{ salt_master_publish_port | default(4505) }}
+
+# Nombre de worker threads
+worker_threads: {{ salt_worker_threads | default(5) }}
+
+# Activer le ping lors de la rotation des clés AES
+ping_on_rotate: True
+
+# Durée de conservation des jobs (en heures)
+keep_jobs: 24

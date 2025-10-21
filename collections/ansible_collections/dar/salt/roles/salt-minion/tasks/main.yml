@@ -1,0 +1,51 @@
+---
+- name: Ajouter le dépôt Salt Project 3006 LTS
+  ansible.builtin.yum_repository:
+    name: salt-repo-3006-lts
+    description: "Salt Project Repository for 3006 LTS"
+    baseurl: "https://packages.broadcom.com/artifactory/saltproject-rpm/"
+    gpgcheck: true
+    gpgkey: https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public
+    enabled: true
+    state: present
+  become: true
+
+- name: Nettoyer le cache DNF
+  ansible.builtin.command:
+    cmd: dnf clean expire-cache
+  changed_when: false
+  become: true
+
+- name: Installer salt-minion
+  ansible.builtin.dnf:
+    name: salt-minion
+    state: present
+    update_cache: true
+  become: true
+
+- name: Créer le répertoire de configuration minion.d
+  ansible.builtin.file:
+    path: /etc/salt/minion.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: true
+
+- name: Déployer la configuration du Salt Minion
+  ansible.builtin.template:
+    src: minion.conf.j2
+    dest: /etc/salt/minion.d/custom.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  notify: Redémarrer salt-minion
+
+- name: Activer et démarrer le service salt-minion
+  ansible.builtin.systemd:
+    name: salt-minion
+    enabled: true
+    state: started
+    daemon_reload: true
+  become: true

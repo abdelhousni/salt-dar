@@ -1,0 +1,8 @@
+---
+# handlers file for dar.salt.salt-minion
+- name: Redémarrer salt-minion
+  ansible.builtin.systemd:
+    name: salt-minion
+    state: restarted
+    daemon_reload: yes
+  become: yes

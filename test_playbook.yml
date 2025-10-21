@@ -1,0 +1,17 @@
+---
+- name: Test Salt Master Role
+  hosts: salt-master.dar
+  become: true
+  collections:
+    - dar.salt
+  roles:
+    - salt-master
+
+- name: Test Salt Minion Role
+  hosts: ansible4.dar
+  become: true
+  collections:
+    - dar.salt
+  roles:
+    - salt-minion
+...

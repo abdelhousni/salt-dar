@@ -1,0 +1,3 @@
+---
+# defaults file for dar.salt.salt-minion
+salt_master_address: "rh-salt-master.dar"

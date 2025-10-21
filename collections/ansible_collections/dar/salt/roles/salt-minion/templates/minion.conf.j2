@@ -1,0 +1,13 @@
+# Configuration personnalisée du Salt Minion
+# Généré par Ansible
+
+# Adresse du Salt Master
+master: {{ salt_master_address }}
+
+# ID du minion (optionnel, par défaut = hostname)
+{% if salt_minion_id is defined %}
+id: {{ salt_minion_id }}
+{% endif %}
+
+# Niveau de log
+log_level: {{ salt_minion_log_level | default('warning') }}

@@ -1,0 +1,6 @@
+# TO-DO: add python packages that are required for this collection
+jmespath==1.0.1
+lxml==6.0.0
+# requests==2.31.0
+# urllib3==2.0.4
+# xmltodict==0.13.0  
