@@ -22,7 +22,7 @@
   ],
   "customizations": {
     "vscode": {
-      "extensions": ["redhat.ansible", "redhat.vscode-yaml", "redhat.vscode-redhat-account"]
+      "extensions": ["redhat.ansible", "redhat.vscode-yaml", "redhat.vscode-redhat-account","github.vscode-github-actions"]
     }
   }
 }
